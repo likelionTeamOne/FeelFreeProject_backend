@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from .models import Post, Comment
 from .serializers import PostSerializer, CommentSerializer 
 from rest_framework.viewsets import ModelViewSet 
@@ -8,7 +9,7 @@ from .permissions import IsOwnerOrReadOnly # type: ignore  #작성자만
 class PostViewSet(ModelViewSet): 
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
+    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly] #게시물 권한 설정
 
     def perform_create(self, serializer): 
         serializer.save(writer = self.request.user)
@@ -17,6 +18,7 @@ class PostViewSet(ModelViewSet):
 class CommentViewSet(ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly] #댓글 권한 설정
 
     def perform_create(self, serializer):  
         serializer.save(writer = self.request.user)

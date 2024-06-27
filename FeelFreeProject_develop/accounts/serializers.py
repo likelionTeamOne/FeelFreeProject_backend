@@ -35,7 +35,8 @@ class UserUpdateSerializer(ModelSerializer) :
     current_password = serializers.CharField(write_only=True, required=False)
     password = serializers.CharField(write_only=True, required=False)
     password_confirm = serializers.CharField(write_only=True, required=False)
-
+    name = serializers.CharField(write_only=True)
+    
     def update(self, instance, validated_data):
         current_password = validated_data.pop('current_password', None)
         password = validated_data.pop('password', None)
