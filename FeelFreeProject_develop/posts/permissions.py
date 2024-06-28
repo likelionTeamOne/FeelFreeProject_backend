@@ -1,4 +1,4 @@
-#게시글 수정 및 삭제 사용자 권한 부여 
+#게시글/댓글 수정 및 삭제 사용자 권한 부여 
 from rest_framework import permissions
 
 class IsOwnerOrReadOnly(permissions.BasePermission):
